@@ -1,0 +1,111 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Atm {
+ private static int bal;
+ private static int amount;
+  private static ArrayList<String> transcations=new ArrayList<String>();
+
+  public static void main(String[] args) {
+   
+    while(true){
+      System.out.println("MAIN MENU");
+      System.out.println("1)deposit money");
+      System.out.println("2)withdraw money");
+      System.out.println("3)view transaction history");
+      System.out.println("4) main menu");
+      System.out.println("5)check balance");
+       System.out.println("6)Exit");
+       System.out.println();
+      System.out.println("Enter your choice:");
+     
+       Scanner sc =new Scanner(System.in);
+       int input=sc.nextInt();
+      switch(input){
+        case 1:
+              System.out.println("DEPOSITING MONEY...");
+              deposit();
+              break;
+        case 2:
+              System.out.println("WITHDRAWING MONEY...");
+              System.out.println("Enter a valid amount to be withdrawn...");
+              withdraw();
+              break;
+        case 3:
+              System.out.println("VIEWING TRANSACTION...");
+              history();
+              break;
+        case 4:
+              System.out.println(" GOING BACK TO MAIN MENU..");
+              continue;
+        case 6:
+              System.exit(input);
+              System.out.println("Exiting..");
+        case 5:
+              System.out.println("checking balance...");
+              checkbal();
+    }
+  }
+    
+    
+
+  }
+
+  public static void deposit(){
+    Scanner sc =new Scanner(System.in);
+    System.out.println("Enter the account  Number:");
+    int accNo=sc.nextInt();
+    System.out.println("Enter the pin number:");
+    int pinNo=sc.nextInt();
+    System.out.println("Enter the amount to deposit:");
+    amount=sc.nextInt();
+    
+    if(accNo==0 || pinNo==0 || amount==0|| amount<0){
+      System.out.println("Please enter the valid details to deposit....");
+      System.out.println("Format:  pinno:123456,amount:1000");
+    }
+    if(amount>50000){
+      System.out.println("Exceeding the limit... 49,0000");
+    }
+    else{
+       bal=+amount;
+      System.out.println("Deposited..amount:"+bal);
+      transcations.add("money deposited:"+bal);
+      
+      
+    }
+
+
+
+  }
+
+  public static void withdraw(){
+Scanner sc =new Scanner(System.in);
+int amount = sc.nextInt();
+if(amount<=0){
+  System.out.println("Enter a valid amout...");
+}
+else{
+  bal-=amount;
+  System.out.println("Withdrawing..amount:"+amount);
+  
+  System.out.println("withdraw..sucessful");
+  transcations.add("money withdrawn:"+amount);
+
+}
+
+
+  }
+
+  public static void history(){
+    for(String trans:transcations){
+      System.out.println(trans);
+  }
+
+  
+}
+public static void checkbal(){
+  System.out.println("Checking the total balance...");
+  System.out.println("Total Balance:"+bal);
+}
+}
